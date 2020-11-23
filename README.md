@@ -2,3 +2,8 @@ LagAssist is a plugin that provides tools to be used to analyse, prevent and res
 (eg: https://www.spigotmc.org/resources/lagassist-%E2%9A%A1-advanced-performance-solution-%E2%9A%A1-1-8-1-16-compatible.56399/)
 
 The accessibility of the code doesn't grant you rights to re-distribute or share this sourcecode outside of the intended purpose.
+
+
+**Code Bounty:**
+
+Any Developers making considerable contributions to the project can receive a free license to use the plugin in commercial contexts without having to purchase it.
