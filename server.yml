@@ -154,6 +154,19 @@ microfeatures:
     # Two versions (flattening and pre)
     - "MELON_BLOCK"
     - "MELON"
+  # Fixes issue with redstone item spam causing lag on the server.
+  # https://rz.al/u/5591.png
+  click-spam-fix:
+    enable: false
+    # Blocks that will increase the counter/
+    blocks:
+    - "LEVER"
+    counter:
+      message: "&cStop interacting with this block so fast."
+      # How much to increment each interact?
+      increment: 20
+      # Max value before showing the message
+      max: 80
 
 
 # Laggy Chunk detection. You can fiddle around and find the best settings for your

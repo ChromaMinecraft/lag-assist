@@ -91,7 +91,7 @@ public class SmartMob implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void DeathListener(EntityDeathEvent e) {
 		Entity ent = e.getEntity();
-		if (simpleslime && ent instanceof Slime) {
+		if (simpleslime && ent.getType() == EntityType.SLIME) {
 			Slime slm = (Slime) ent;
 			e.getDrops().clear();
 
@@ -127,7 +127,7 @@ public class SmartMob implements Listener {
 			}, 40L);
 		}
 
-		if (simpleslime && (reason == SpawnReason.SLIME_SPLIT)) {
+		if (simpleslime && (reason == SpawnReason.SLIME_SPLIT) && ent.getType() == EntityType.SLIME) {
 			e.setCancelled(true);
 		}
 
