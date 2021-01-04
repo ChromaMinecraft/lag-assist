@@ -14,7 +14,7 @@
 	<classpathentry kind="lib" path="W:/Minecraft Versions/Paper-1.13.2-b624.jar"/>
 	<classpathentry kind="lib" path="W:/Minecraft Versions/Paper-1.12.2-b1618.jar"/>
 	<classpathentry kind="lib" path="W:/Minecraft Versions/PaperSpigot-1.8.8-R0.1-SNAPSHOT-latest.jar"/>
-	<classpathentry kind="lib" path="W:/Minecraft Versions/Spigot-1.15.jar"/>
 	<classpathentry kind="lib" path="W:/Custom Plugins/Vault.jar"/>
+	<classpathentry kind="lib" path="W:/Minecraft Versions/spigot-1.16.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

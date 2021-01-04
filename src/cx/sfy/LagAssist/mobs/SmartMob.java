@@ -27,6 +27,8 @@ import cx.sfy.LagAssist.utils.WorldMgr;
 
 public class SmartMob implements Listener {
 
+	EventPriority prio;
+	
 	private static SplittableRandom rand = new SplittableRandom();
 
 	public static boolean Spawning;

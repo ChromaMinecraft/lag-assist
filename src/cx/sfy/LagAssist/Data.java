@@ -39,42 +39,44 @@ public class Data {
 			e.printStackTrace();
 
 		}
-		
+
 		if (!data.contains("version")) {
-			
-			
+
 			if (data.contains("hoppers")) {
 				for (String rawh : data.getConfigurationSection("hoppers").getKeys(false)) {
 					String loc = "hoppers." + rawh;
-					
+
 					List<String> values = data.getStringList(loc);
 					data.set(loc, null);
 					data.set(loc + ".materials", values);
-				}	
+				}
 			}
-			
+
 			data.set("version", 1);
-			
+
 			saveData();
-			
+
 		}
 
 	}
 
+	private static long last;
+
 	private static void saveData() {
-//		
-//		if (System.currentTimeMillis() - last < 1000) {
-//			return;
-//		}
-//		
-//		
-//		Bukkit.getScheduler().runTaskAsynchronously(Main.p, () -> {
-		try {
-			data.save(dataf);
-		} catch (IOException e) {
-			e.printStackTrace();
+
+		if (System.currentTimeMillis() - last < 3000) {
+			return;
 		}
-//		});
+
+		last = System.currentTimeMillis();
+
+		Bukkit.getScheduler().runTaskAsynchronously(Main.p, () -> {
+			try {
+				data.save(dataf);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	private static short genMapId() {
@@ -99,32 +101,32 @@ public class Data {
 		}
 
 	}
-	
+
 	public static void deleteHopper(Hopper h) {
 		String cloc = "hoppers." + WorldMgr.serializeLocation(h.getLocation());
-		
+
 		data.set(cloc, null);
 		saveData();
 	}
-	
+
 	public static boolean isSellHopper(Location loc) {
 		String cloc = "hoppers." + WorldMgr.serializeLocation(loc);
-		
+
 		return data.getBoolean(cloc + ".sellhopper", false);
 	}
-	
+
 	public static boolean toggleSellHopper(Player p, Location loc) {
 		String cloc = "hoppers." + WorldMgr.serializeLocation(loc);
 
 		String owner = data.getString(cloc + ".owner", "NONE");
-		
+
 		if (!(p.getUniqueId().toString().equals(owner) || p.hasPermission("lagassist.hopper.bypass"))) {
 			p.sendMessage(Main.PREFIX + "You can't toggle selling for a hopper not owned by you");
 			return false;
 		}
-		
+
 		String percentage = "§e" + SellHoppers.getMultiplierPercentage(Bukkit.getOfflinePlayer(p.getUniqueId())) + "%";
-		
+
 		if (isSellHopper(loc)) {
 			data.set(cloc + ".sellhopper", false);
 			p.sendMessage(Main.PREFIX + "This sellhopper has been §cdisabled§f at " + percentage + "§f.");
@@ -138,7 +140,7 @@ public class Data {
 		}
 	}
 
- 	public static OfflinePlayer getOwningPlayer(Location loc) {
+	public static OfflinePlayer getOwningPlayer(Location loc) {
 		String cloc = "hoppers." + WorldMgr.serializeLocation(loc);
 
 		if (data.contains(cloc + ".owner")) {

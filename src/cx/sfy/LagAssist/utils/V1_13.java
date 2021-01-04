@@ -64,13 +64,18 @@ public class V1_13 {
 	public static List<ItemStack> getLootTable(Entity ent) {
 		LootTables lt = LootTables.valueOf(ent.getType().toString());
 		
+		// TODO: FIX in 1.16
+		// java.lang.IllegalArgumentException:
+		// Missing required parameters:
+		// [<parameter minecraft:this_entity>, <parameter minecraft:damage_source>]
+			
 		List<ItemStack> itms = new ArrayList<ItemStack>();
 		
 		if (lt == null) {
 			return itms;
 		}
 		
-		itms.addAll(lt.getLootTable().populateLoot(r, new LootContext.Builder(ent.getLocation()).build()));
+		itms.addAll(lt.getLootTable().populateLoot(r, new LootContext.Builder(ent.getLocation()).lootedEntity(ent).build()));
 		
 		return itms;
 	}
