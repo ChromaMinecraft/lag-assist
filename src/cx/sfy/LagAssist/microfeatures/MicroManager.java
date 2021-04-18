@@ -34,6 +34,7 @@ public class MicroManager implements Listener {
 		}
 
 		Main.p.getServer().getPluginManager().registerEvents(new MicroManager(), Main.p);
+		Main.p.getServer().getPluginManager().registerEvents(new GrowableStack(), Main.p);
 	}
 
 	private static void runTask() {

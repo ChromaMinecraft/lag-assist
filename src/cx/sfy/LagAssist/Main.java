@@ -135,7 +135,7 @@ public class Main extends JavaPlugin implements Listener {
 			p.sendMessage(msg + "(MINDEBUG: " + mindebug + ")");
 		}
 
-		if (debug == 2) {
+		if (debug == 3) {
 			try {
 				throw new Exception(msg);
 			} catch (Exception e) {

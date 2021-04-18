@@ -97,7 +97,7 @@ public class CommandListener implements CommandExecutor {
 								.reduce((s1, s2) -> s1 + "\n" + s2).orElse("NOT FOUND"));
 					}
 				} else if (arg.equalsIgnoreCase("debugmode")) {
-					Main.debug = Main.debug >= 2 ? 0 : Main.debug+1;
+					Main.debug = Main.debug >= 3 ? 0 : Main.debug+1;
 					sender.sendMessage(Main.PREFIX + "Debug setting currently at: " + Main.debug);
 				} else {
 					sendHelp(sender);

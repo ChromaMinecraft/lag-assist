@@ -13,7 +13,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import cx.sfy.LagAssist.utils.V1_11;
-import cx.sfy.LagAssist.utils.VersionMgr;
 import cx.sfy.LagAssist.utils.WorldMgr;
 
 public class Redstone implements Listener {
@@ -56,16 +55,14 @@ public class Redstone implements Listener {
 			@Override
 			public void run() {
 				redstoneculler = false;
-				if (VersionMgr.isV1_11()) {
-					V1_11.ObserverBreaker();
-				}
+				V1_11.observerBreaker();
 			}
 
 		}.runTaskLater(Main.p, ticks);
 	}
 
 	@EventHandler
-	public void RedstoneCuller(BlockRedstoneEvent e) {
+	public void redstoneCuller(BlockRedstoneEvent e) {
 		if (!redstoneculler) {
 			return;
 		}
@@ -98,14 +95,14 @@ public class Redstone implements Listener {
 			if (WorldMgr.isBlacklisted(e.getBlock().getWorld())) {
 				return;
 			}
-			if (VersionMgr.isV1_11()) {
+//			if (VersionMgr.isNewMaterials()) {
 				if (destructives) {
 					V1_11.ObserverAdd(e.getBlock());
 				}
 				if (V1_11.isObserver(e.getBlock())) {
 					e.setCancelled(true);
 				}
-			}
+//			}
 		}
 	}
 

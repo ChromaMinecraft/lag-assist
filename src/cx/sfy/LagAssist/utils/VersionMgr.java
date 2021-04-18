@@ -43,7 +43,7 @@ public class VersionMgr {
 	}
 
 	public static boolean isV1_11() {
-		return Bukkit.getVersion().contains("1.11");
+		return !isV1_8() && !isV1_9() && !isV1_10();
 	}
 	
 	public static boolean isV1_12() {

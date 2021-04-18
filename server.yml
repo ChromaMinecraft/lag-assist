@@ -167,7 +167,19 @@ microfeatures:
       increment: 20
       # Max value before showing the message
       max: 80
-
+  # This feature stack growables in a chunk and only drops items on a full stack.
+  # IT should reduce the entity counts in the chunk, and can help on servers where
+  # chunkhoppers are not fully adopted.
+  #
+  # (!) Not recommended for servers that do not have extremely huge farms, as the
+  #     drops from smaller farms will get delayed.
+  stack-growables:
+    enable: false
+    # What is the stack size? Amounts over 64 won't render.
+    stacksize: 64
+    blocks:
+    - "CACTUS"
+    - "SUGAR_CANE"
 
 # Laggy Chunk detection. You can fiddle around and find the best settings for your
 # server.

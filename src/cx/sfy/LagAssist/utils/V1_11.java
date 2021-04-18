@@ -15,16 +15,20 @@ public class V1_11 {
 	public static Map<Block, Integer> removable = new HashMap<Block, Integer>();
 
 	public static void ObserverAdd(Block b) {
-		if (b.getType().equals(Material.OBSERVER)) {
-			if (removable.containsKey(b)) {
-				removable.put(b, removable.get(b) + 1);
-			} else {
-				removable.put(b, 1);
-			}
+		
+		Material mat = Material.getMaterial("OBSERVER");
+		
+		if (mat == null) {
+			return;
+		}
+		
+		if (b.getType().equals(mat)) {
+			int val = removable.compute(b, (k, v) -> v == null ? 1 : v+1);
+			Main.sendDebug("Incremented value for observer: " + val, 2);
 		}
 	}
 
-	public static void ObserverBreaker() {
+	public static void observerBreaker() {
 		int min = Main.config.getInt("redstone-culler.destructive.value");
 		for (Block bs : removable.keySet()) {
 			if (removable.get(bs) > min) {
@@ -78,7 +82,11 @@ public class V1_11 {
 	// }
 
 	public static boolean isObserver(Block b) {
-		if (b.getType().equals(Material.OBSERVER)) {
+		if (b == null) {
+			return false;
+		}
+		
+		if (b.getType().equals(Material.getMaterial("OBSERVER"))) {
 			return true;
 		}
 		return false;
