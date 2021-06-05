@@ -2,6 +2,7 @@ package cx.sfy.LagAssist.client;
 
 import java.util.UUID;
 
+import cx.sfy.LagAssist.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -36,16 +37,16 @@ public class ClientPacket {
 					int y = ((int) Reflection.getFieldValue(msg, "c")) / 32;
 					int z = ((int) Reflection.getFieldValue(msg, "d")) / 32;
 					Location loc = new Location(p.getWorld(), x, y, z);
-					ent = Reflection.getEntity(loc);
+					ent = Bukkit.getScheduler().callSyncMethod(Main.p, () -> Reflection.getEntity(loc)).get();
 				} else if (VersionMgr.isV1_13() || VersionMgr.isV1_14()) {
 					UUID u = (UUID) Reflection.getFieldValue(msg, "b");
-					ent = Bukkit.getEntity(u);
+					ent = Bukkit.getScheduler().callSyncMethod(Main.p, () -> Bukkit.getEntity(u)).get();
 				} else {
 					double x = ((double) Reflection.getFieldValue(msg, "c"));
 					double y = ((double) Reflection.getFieldValue(msg, "d"));
 					double z = ((double) Reflection.getFieldValue(msg, "e"));
 					Location loc = new Location(p.getWorld(), x, y, z);
-					ent = Reflection.getEntity(loc);
+					ent = Bukkit.getScheduler().callSyncMethod(Main.p, () -> Reflection.getEntity(loc)).get();
 				}
 
 				if (ent == null) {
